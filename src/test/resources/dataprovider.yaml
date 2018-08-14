@@ -1,0 +1,27 @@
+generalStructureTest:
+  - [cent, Forex, AUDCADc, "10000", "800", USC]
+generalContentTest:
+  - [cent, Forex, AUDCADc, "10000", "800", USC]
+# Лот x размер контракта / размер плеча
+shortMarginFormulaTest:
+  - [cent, Forex, AUDCADc, "10000", "800", USC]
+#  Лот x размер контракта x рыночная цена x размер необходимой маржи
+longMarginFormulaTest:
+  - [cent, Forex, EURDKKc, "10000", "800", USC]
+cryptoTest:
+  - [classic, Forex, ETHUSD, "10000", "800", USD]
+accountDataTest:
+  - [cent]
+  - [classic]
+  - [ecn]
+  - [mini]
+negativeValuesTest:
+  - [cent, forex, sybmols, lot, leverage, currency]
+badFormTypeTest:
+  - [badform, Forex, AUDCAD, "10000", "800", USD]
+badLotTest:
+  - [classic, Forex, ETHUSD, "0", "800", USD]
+  - [classic, Forex, ETHUSD, "-1", "800", USD]
+#  - [classic, Forex, ETHUSD, "100000000000000000", "800", USD] # упадёт с 500 ошибкой
+#  - [classic, Forex, ETHUSD, "1000000", "800", USD] # нет проверки на максимальное значение
+

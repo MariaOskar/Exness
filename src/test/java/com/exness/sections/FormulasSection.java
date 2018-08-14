@@ -1,18 +1,12 @@
 package com.exness.sections;
 
-import com.epam.jdi.uitests.web.selenium.elements.common.Label;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
-import com.exness.pages.CalculatorPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-
-import static com.exness.ExnessSite.calculatorPage;
 
 public class FormulasSection extends Section {
 
@@ -23,9 +17,6 @@ public class FormulasSection extends Section {
     public static final By SWAP_FORMULA_STR = By.id("swap_formula1");
     public static final By SWAP_FORMULA_LONG = By.id("swap_formula2");
     public static final By SWAP_FORMULA_SHORT = By.id("swap_formula3");
-    public static final By COMMISSION_BLOCK = By.xpath("//h3[contains(@class,'commission')]/parent::div");
-    public static final By COMMISSION_FORMULA_STR = By.id("commission_formula1");
-    public static final By COMMISSION_FORMULA_NUM = By.id("commission_formula2");
     public static final By PROFIT_VOLUME_BLOCK = By.xpath("//p[contains(@id,'profit_formula1')]/parent::div");
     public static final By PROFIT_FORMULA_NUM = By.id("profit_formula2");
     public static final By PROFIT_FORMULA_STR = By.id("profit_formula1");
@@ -40,158 +31,84 @@ public class FormulasSection extends Section {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitFormulasBlock(){
+        waitForVisibilityOfElement(get(FORMULAS_BLOCK));
+    }
+
     public boolean isFormulasBlockDisplayed(){
-        return getFormulasBlockElement().isDisplayed();
+        return get(FORMULAS_BLOCK).isDisplayed();
     }
 
     public boolean ifSwapBlockDisplayed(){
-        return getSwapBlockElement().isDisplayed();
-    }
-
-    public boolean isComissionBlockDisplayed(){
-        return getComissionBlockElement().isDisplayed();
+        return get(SWAP_BLOCK).isDisplayed();
     }
 
     public boolean isProfitVolumeBlockDisplayed(){
-        return getProfiVolumeBlockElement().isDisplayed();
+        return get(PROFIT_VOLUME_BLOCK).isDisplayed();
     }
 
     public boolean isConversionPairsBlockDisplayed(){
-        return getConversionPairsBlockElement().isDisplayed();
+        return get(CONVERSION_PAIRS_BLOCK).isDisplayed();
     }
 
-
-    public WebElement getFormulasBlockElement(){
-        return getDriver().findElement(FORMULAS_BLOCK);
+    public boolean isMarginFormulaStrDispalyed(){
+        return get(MARGIN_FORMULA_STR).isDisplayed();
     }
 
-    public WebElement getVolumeFormulaStrElement(){
-        return calculatorPage.getDriver().findElement(VOLUME_FORMULA_STR);
+    public boolean isMarginFormulaNumDisplayed(){
+        return get(MARGIN_FORMULA_NUM).isDisplayed();
     }
 
     public String getVolumeFormulaStr(){
-        waitForVisibilityOfElement(getVolumeFormulaStrElement());
-        return getVolumeFormulaStrElement().getText();
-    }
-
-    public WebElement getMarginFormulaStrElement(){
-        return calculatorPage.getDriver().findElement(MARGIN_FORMULA_STR);
+        return waitElementAndGetText(VOLUME_FORMULA_STR);
     }
 
     public String getMarginFormulaStr(){
-        waitForVisibilityOfElement(getMarginFormulaStrElement());
-        return getMarginFormulaStrElement().getText();
-    }
-
-    public WebElement getMarginFormulaNumElement(){
-        return calculatorPage.getDriver().findElement(MARGIN_FORMULA_NUM);
+        return waitElementAndGetText(MARGIN_FORMULA_STR);
     }
 
     public String getMarginFormulaNum(){
-        waitForVisibilityOfElement(getMarginFormulaNumElement());
-        return getMarginFormulaNumElement().getText();
-    }
-
-    public WebElement getSwapBlockElement(){
-        return getDriver().findElement(SWAP_BLOCK);
-    }
-
-    public WebElement getSwapFormulaStrElement(){
-        return calculatorPage.getDriver().findElement(SWAP_FORMULA_STR);
+        return waitElementAndGetText(MARGIN_FORMULA_NUM);
     }
 
     public String getSwapFormulaStr(){
-        waitForVisibilityOfElement(getSwapFormulaStrElement());
-        return getSwapFormulaStrElement().getText();
-    }
-
-    public WebElement getSwapFormulaLongElement(){
-        return calculatorPage.getDriver().findElement(SWAP_FORMULA_LONG);
+        return waitElementAndGetText(SWAP_FORMULA_STR);
     }
 
     public String getSwapFormulaLong(){
-        waitForVisibilityOfElement(getSwapFormulaLongElement());
-        return getSwapFormulaLongElement().getText();
-    }
-
-    public WebElement getSwapFormulaShortElement(){
-        return calculatorPage.getDriver().findElement(SWAP_FORMULA_SHORT);
+        return waitElementAndGetText(SWAP_FORMULA_LONG);
     }
 
     public String getSwapFormulaShort(){
-        waitForVisibilityOfElement(getSwapFormulaShortElement());
-        return getSwapFormulaShortElement().getText();
-    }
-
-    public WebElement getComissionBlockElement(){
-        return getDriver().findElement(COMMISSION_BLOCK);
-    }
-
-    public WebElement getCommissionFormulaStrElement(){
-        return calculatorPage.getDriver().findElement(COMMISSION_FORMULA_STR);
-    }
-
-    public String getCommissionFormulaStr(){
-        waitForVisibilityOfElement(getCommissionFormulaStrElement());
-        return getCommissionFormulaStrElement().getText();
-    }
-
-    public WebElement getCommissionFormulaNumElement(){
-        return calculatorPage.getDriver().findElement(COMMISSION_FORMULA_NUM);
-    }
-
-    public String getCommissionFormulaNum(){
-        waitForVisibilityOfElement(getCommissionFormulaNumElement());
-        return getCommissionFormulaNumElement().getText();
-    }
-
-    public WebElement getProfiVolumeBlockElement(){
-        return getDriver().findElement(PROFIT_VOLUME_BLOCK);
-    }
-
-    public WebElement getProfitFormulaNumElement(){
-        return calculatorPage.getDriver().findElement(PROFIT_FORMULA_NUM);
+        return waitElementAndGetText(SWAP_FORMULA_SHORT);
     }
 
     public String getProfitFormulaNum(){
-        waitForVisibilityOfElement(getProfitFormulaNumElement());
-        return getProfitFormulaNumElement().getText();
-    }
-
-    public WebElement getProfitFormulaStrElement(){
-        return calculatorPage.getDriver().findElement(PROFIT_FORMULA_STR);
+        return waitElementAndGetText(PROFIT_FORMULA_NUM);
     }
 
     public String getProfitFormulaStr(){
-        waitForVisibilityOfElement(getProfitFormulaStrElement());
-        return getProfitFormulaStrElement().getText();
-    }
-
-    public WebElement getVolumeFormulaNumElement(){
-        return calculatorPage.getDriver().findElement(VOLUME_FORMULA_NUM);
+        return waitElementAndGetText(PROFIT_FORMULA_STR);
     }
 
     public String getVolumeFormulaNum(){
-        waitForVisibilityOfElement(getVolumeFormulaNumElement());
-        return getVolumeFormulaNumElement().getText();
+        return waitElementAndGetText(VOLUME_FORMULA_NUM);
     }
 
-    public WebElement getConversionPairsBlockElement(){
-        return getDriver().findElement(CONVERSION_PAIRS_BLOCK);
+    private String waitElementAndGetText(By locator){
+        waitForVisibilityOfElement(get(locator));
+        return get(locator).getText();
     }
 
-    public HashMap<String,String> getConversionPairs(){
-        HashMap<String,String> pairs = new HashMap<String, String>();
-        waitForVisibilityOfElement(getConversionPairsBlockElement());
-        List<WebElement> paragraphs = getConversionPairsBlockElement().findElements(By.tagName("p"));
+    public LinkedHashMap<String,Double> getConversionPairs(){
+        LinkedHashMap<String,Double> pairs = new LinkedHashMap<String, Double>();
+        waitForVisibilityOfElement(get(CONVERSION_PAIRS_BLOCK));
+        List<WebElement> paragraphs = get(CONVERSION_PAIRS_BLOCK).findElements(By.tagName("p"));
         for(WebElement p: paragraphs){
             String pairName = p.findElement(PAIR_NAME).getText();
-            String pairValue = p.findElement(PAIR_VALUE).getText();
+            Double pairValue = Double.valueOf(p.findElement(PAIR_VALUE).getText());
             pairs.put(pairName,pairValue);
         }
         return pairs;
     }
-
-
-
 }

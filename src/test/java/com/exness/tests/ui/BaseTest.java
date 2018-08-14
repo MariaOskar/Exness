@@ -10,7 +10,6 @@ public class BaseTest extends TestNGBase {
     @BeforeSuite
     public void setup(){
         WebSite.init(ExnessSite.class);
-
     }
 
 }
